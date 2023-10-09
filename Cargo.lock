@@ -55,6 +55,7 @@ name = "binfix-nixos"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "elf",
 ]
 
 [[package]]
@@ -102,6 +103,12 @@ name = "colorchoice"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "acbf1af155f9b9ef647e42cdc158db4b64a1b61f743629225fde6f3e0be2a7c7"
+
+[[package]]
+name = "elf"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7f6e7d85896690fe195447717af8eceae0593ac2196fd42fe88c184e904406ce"
 
 [[package]]
 name = "heck"
