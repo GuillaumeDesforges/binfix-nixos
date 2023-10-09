@@ -13,25 +13,31 @@ fn main() {
 
     for file in args.files {
         let file_path = Path::new(file.as_str());
-        patch_file(file_path).ok();
+        process_path(file_path).ok();
     }
 }
 
-fn patch_file(file_path: &Path) -> io::Result<()> {
+fn process_path(path: &Path) -> io::Result<()> {
     // ignore if it does not exist
-    if !file_path.exists() {
-        println!("Ignoring {:?}: No such file or directory", file_path);
+    if !path.exists() {
+        println!("Ignoring {:?}: No such file or directory", path);
         return Ok(());
     }
     // recurse if it is a directory
-    if file_path.is_dir() {
-        for dir_entry in fs::read_dir(file_path)? {
-            let entry_path = dir_entry?.path();
-            patch_file(&entry_path)?;
+    if path.is_dir() {
+        for entry in fs::read_dir(path)? {
+            let entry_path = entry?.path();
+            process_path(&entry_path)?;
         }
         return Ok(());
     }
-    // patch file otherwise
-    println!("Patching {:?}", file_path);
+    // TODO check it is an ELF file
+    // patch file
+    autopatchelf(path)?;
+    return Ok(());
+}
+
+fn autopatchelf(path: &Path) -> io::Result<()> {
+    println!("Patching {:?}", path);
     return Ok(());
 }
