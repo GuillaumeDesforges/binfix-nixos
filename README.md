@@ -2,6 +2,8 @@
 
 Make arbitrary binaries work on NixOS.
 
+> This is a WIP.
+
 Includes a special mode for Python venv.
 
 ## Usage
